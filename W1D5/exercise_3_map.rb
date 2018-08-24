@@ -13,11 +13,27 @@ class Map
   end
 
   def set(key, value)
-
+    keys = []
+    values = []
+    @ivar.each_index do |i|
+      keys << @ivar[i][0]
+      values << @ivar[i][1]
+    end
+    if keys.include?(key)
+      #search for correct array
+      @ivar.each_index do |i|
+        @ivar[i] << value if @ivar[i][0] == key
+      end
+    else
+      @ivar << [key, value]
+    end
   end
 
   def get(key)
-
+    @ivar.each_index do |i|
+      return @ivar[i][1..-1] if @ivar[i][0] == key
+    end
+    nil
   end
 
   def delete_key
