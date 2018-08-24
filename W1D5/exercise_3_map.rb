@@ -36,12 +36,12 @@ class Map
     nil
   end
 
-  def delete_key
-
+  def delete(key)
+    @ivar.reject! { |el| el[0] == key  }
   end
 
   def show
-
+    @ivar
   end
 
 end
