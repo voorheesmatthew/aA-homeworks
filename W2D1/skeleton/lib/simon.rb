@@ -12,6 +12,7 @@ class Simon
   end
 
   def play
+    # system('clear')
     until game_over == true
       take_turn
     end
@@ -24,7 +25,6 @@ class Simon
     require_sequence
     unless @game_over == true
       round_success_message
-      # debugger
       add_random_color
       self.sequence_length += 1
     end
@@ -32,9 +32,29 @@ class Simon
 
   def show_sequence
     add_random_color
+    # system('clear')
+    # puts "Watch closely!"
+    # sleep(2)
+    # system('clear')
+    # @seq.each do |color|
+    #   puts "  "
+    #   sleep(1)
+    #   system('clear')
+    #   puts "#{color}"
+    #   sleep(2)
+    #   system('clear')
+    # end
   end
 
   def require_sequence
+    puts 'Type the colors in order: (i.e "red blue green yellow")'
+    guess = gets.chomp.split(" ")
+    guess.each_with_index do |color, i|
+      @seq.each_with_index do |color2, j|
+        next if i != j
+        @game_over = true unless color == color2
+      end
+    end
 
   end
 
@@ -43,11 +63,13 @@ class Simon
   end
 
   def round_success_message
-    puts "Great Job! You got it!"
+    # system('clear')
+    # puts "Great Job! You got it!"
   end
 
   def game_over_message
-    puts "Incorrect! Game Over!"
+    # system('clear')
+    # puts "Incorrect! Game Over!"
   end
 
   def reset_game
@@ -55,4 +77,9 @@ class Simon
     @game_over = false
     @seq = []
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  game = Simon.new
+  game.play
 end
