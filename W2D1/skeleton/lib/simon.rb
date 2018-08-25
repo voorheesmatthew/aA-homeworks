@@ -12,7 +12,7 @@ class Simon
   end
 
   def play
-    # system('clear')
+    system('clear')
     until game_over == true
       take_turn
     end
@@ -32,18 +32,18 @@ class Simon
 
   def show_sequence
     add_random_color
-    # system('clear')
-    # puts "Watch closely!"
-    # sleep(2)
-    # system('clear')
-    # @seq.each do |color|
-    #   puts "  "
-    #   sleep(1)
-    #   system('clear')
-    #   puts "#{color}"
-    #   sleep(2)
-    #   system('clear')
-    # end
+    system('clear')
+    puts "Watch closely!"
+    sleep(2)
+    system('clear')
+    @seq.each do |color|
+      puts "  "
+      sleep(1)
+      system('clear')
+      puts "#{color}"
+      sleep(2)
+      system('clear')
+    end
   end
 
   def require_sequence
@@ -63,13 +63,14 @@ class Simon
   end
 
   def round_success_message
-    # system('clear')
-    # puts "Great Job! You got it!"
+    system('clear')
+    sleep(2)
+    puts "Great Job! You got it!"
   end
 
   def game_over_message
-    # system('clear')
-    # puts "Incorrect! Game Over!"
+    system('clear')
+    puts "Incorrect! Game Over!"
   end
 
   def reset_game
