@@ -6,7 +6,7 @@ Instructions: implement all of the pending specs (the `it` statements without bl
 =end
 
 describe Dessert do
-  subject(:dessert) { Dessert.new("Sunday", 20, "Matt") }
+  subject(:dessert) { Dessert.new("Sunday", 20, chef) }
   let(:chef) { double("chef") }
 
   describe "#initialize" do
@@ -23,7 +23,7 @@ describe Dessert do
     end
 
     it "raises an argument error when given a non-integer quantity" do
-      expect{Dessert.new("Fudge", "10", "matt")}.to raise_error(ArgumentError)
+      expect{Dessert.new("Fudge", "10", chef)}.to raise_error(ArgumentError)
     end
   end
 
@@ -55,7 +55,8 @@ describe Dessert do
 
   describe "#serve" do
     it "contains the titleized version of the chef's name" do
-      expect(dessert.serve).to include("Matt")
+      expect(chef).to receive(:titleize).and_return("Chef Matt")
+      expect(dessert.serve).to eq("Chef Matt has made 20 Sundays!")
     end
   end
 
