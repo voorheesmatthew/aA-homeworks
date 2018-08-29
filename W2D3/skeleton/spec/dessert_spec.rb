@@ -23,7 +23,7 @@ describe Dessert do
     end
 
     it "raises an argument error when given a non-integer quantity" do
-      expect{Dessert.new("Fudge", "10", "Matt")}.to raise_error(ArgumentError)
+      expect{Dessert.new("Fudge", "10", "matt")}.to raise_error(ArgumentError)
     end
   end
 
@@ -34,18 +34,29 @@ describe Dessert do
   end
 
   describe "#mix!" do
-    it "shuffles the ingredient array"
-    
+    it "shuffles the ingredient array" do
+      ["A","B", "C", "D"].each do |ing|
+        dessert.add_ingredient(ing)
+      end
+      expect(dessert.mix!).to_not eq(["A","B", "C", "D"])
+    end
   end
 
   describe "#eat" do
-    it "subtracts an amount from the quantity"
+    it "subtracts an amount from the quantity" do
+      dessert.eat(11)
+      expect(dessert.quantity).to eq(9)
+    end
 
-    it "raises an error if the amount is greater than the quantity"
+    it "raises an error if the amount is greater than the quantity" do
+      expect{dessert.eat(21)}.to raise_error("not enough left!")
+    end
   end
 
   describe "#serve" do
-    it "contains the titleized version of the chef's name"
+    it "contains the titleized version of the chef's name" do
+      expect(dessert.serve).to include("Matt")
+    end
   end
 
   describe "#make_more" do
