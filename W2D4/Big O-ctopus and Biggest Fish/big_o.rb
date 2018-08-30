@@ -44,21 +44,66 @@ def clev_oct(fishes)
   longest_fish
 end
 
+# Dancing Octopus
+# Full of fish, the Octopus attempts Dance Dance Revolution. The game has tiles in the following directions:
+#
+tiles_array = ["up", "right-up", "right", "right-down", "down", "left-down", "left",  "left-up" ]
+# To play the game, the octopus must step on a tile with her corresponding tentacle. We can assume that the octopus's eight tentacles are numbered and correspond to the tile direction indices.
+#
+# Slow Dance
+# Given a tile direction, iterate through a tiles array to return the tentacle number (tile index) the octopus must move. This should take O(n) time.
+#
+# slow_dance("up", tiles_array)
+# > 0
+#
+# slow_dance("right-down", tiles_array)
+# > 3
+
+def slow_dance(dir, tiles_array)
+  tiles_array.each_with_index do |tile, i|
+    return i if tile == dir
+  end
+  nil
+end
 
 
+# Constant Dance!
+# Now that the octopus is warmed up, let's help her dance faster. Use a different data structure and write a new function so that you can access the tentacle number in O(1) time.
+#
+# fast_dance("up", new_tiles_data_structure)
+# > 0
+#
+# fast_dance("right-down", new_tiles_data_structure)
+# > 3
+# new_tiles_data_structure AKA ntds
+def new_tiles_data_structure(arr)
+  ntds = {}
+  arr.each_with_index {|el,i| ntds[el] = i }
+  ntds
+end
+
+ntds = new_tiles_data_structure(tiles_array)
 
 
-
-
-
-
-
-
-
-
+def fast_dance(dir, ntds)
+  ntds[dir]
+end
 
 if __FILE__ == $PROGRAM_NAME
+
+  # p fast_dance("up", ntds)
+  ## > 0
+
+  # p fast_dance("right-down", ntds)
+  ## > 3
+
+  # p slow_dance("up", tiles_array)
+  ## > 0
+  #
+  # p slow_dance("right-down", tiles_array)
+  ## > 3
+
   # p clev_oct(fishes)
-  p oct_dom(fishes)
+  # p oct_dom(fishes)
   # p sluggish_oct(fishes)
 end
