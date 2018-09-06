@@ -125,8 +125,8 @@ class MetaCorgiSnacks
       end
 
       self.search(search_conditions)
-    # else
-    #   super
+    else
+      super
     end
   end
 
