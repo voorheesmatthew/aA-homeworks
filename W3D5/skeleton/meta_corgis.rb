@@ -109,29 +109,13 @@ class MetaCorgiSnacks
     @box_id = box_id
   end
 
-  def method_missing(name, *args)
-    given_name = name.to_s
-    if given_name.start_with?("get_")
-      attr_string = given_name[("get_".length)..-1]
-
-      attr_names = attr_string.split("_and_")
-      unless attr_names.length == args.length
-        raise "unexpected # of arguments"
-      end
-
-      search_conditions = {}
-      attr_names.length.times do |i|
-        search_conditions[attr_names[i]] = args[i]
-      end
-
-      self.search(search_conditions)
-    else
-      super
-    end
-  end
-
+  # def method_missing(name, *args)
+  #   get_info = @snack_box.send("get_#{name}_info", @box_id)
+  #   get_tastiness = @snack_box.send("get_#{name}_tastiness", @box_id)
+  #   "#{name}: #{get_info}: #{get_tastiness}"
+  # end
 
   def self.define_snack(name)
-    # Your code goes here...
+    # ???
   end
 end
