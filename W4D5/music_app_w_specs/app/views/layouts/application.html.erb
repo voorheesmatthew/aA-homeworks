@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <h1>My Space 2.0</h1>
+      <% if logged_in? %>
+      <h2>Logged In As : <%= current_user.email %></h2>
+      <form action="<%= session_url %>" method="post">
+        <%= auth_token %>
+        <%= delete_method_overide %>
+        <input class="header_button" type="submit" name="" value="Logout!">
+      </form>
+      <form action="<%= bands_url %>" method="post">
+        <%= auth_token %>
+        <%= get_method_overide %>
+        <input class="header_button" type="submit" name="" value="See all bands!">
+      </form>
+      <% else %>
+        <form action="<%= new_session_url %>" method="post">
+          <%= get_method_overide %>
+          <input class="header_button" type="submit" name="" value="Login!">
+        </form>
+
+        <form action="<%= new_user_url %>" method="post">
+          <%= get_method_overide %>
+          <input class="header_button" type="submit" name="" value="Sign Up!">
+        </form>
+      <% end %>
+    </header>
+    <%= yield %>
+    <% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+    <%= error %><br>
+    <% end %>
+    <% end %>
+  </body>
+</html>
