@@ -3,9 +3,10 @@
 body {
   /* Write your css here... */
   font-family: sans-serif;
-  font-weight: 700;
   font-size: 24px;
+  font-weight: 700;
   background: #eee;
+  border-width: 1px;
 }
 
 .header {
@@ -14,9 +15,13 @@ body {
 }
 
 .header a {
-
+  color: white;
 }
 
 .header-nav {
-
+ width: 900px;
+ border-left: #ccc;
+ border-right: #ccc;
+ /* background: green; */
+ margin: auto;
 }
